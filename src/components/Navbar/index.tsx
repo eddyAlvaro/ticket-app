@@ -1,15 +1,22 @@
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {ChangeEvent, ForwardedRef, forwardRef, KeyboardEvent, useImperativeHandle, useState} from "react";
 import {Keys} from "./EnumKey.ts";
 
 interface Props {
     onSearch: (term: string) => void
 }
 
-export const Navbar = ({onSearch}: Props) => {
+export const Navbar = forwardRef(({onSearch}: Props, ref: ForwardedRef<HTMLDivElement>) => {
     const [search, setSearch] = useState("");
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value)
     }
+
+    //CON ESTE METIDO PODEMOS EXPONER VALORES, METODOS, FUNCIONES  DIRECTAMENTE AL PADRE
+    // useImperativeHandle(
+    //     ref,() => ({
+    //         search
+    //     }))
+
 
     const handleInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === Keys.ENTER) {
@@ -17,17 +24,20 @@ export const Navbar = ({onSearch}: Props) => {
             onSearch(search)
         }
     }
-
+    console.log(ref)
     return (
         <>
-            <p>My Market</p>
-            <input
-                placeholder={"search favorite event"}
-                onChange={(evt) => handleInputChange(evt)}
-                onKeyDown={(evt) => handleInputKeyDown(evt)}
-                value={search}
-            />
+            <section ref={ref}>
+                <p>My Market</p>
+                <input
+                    placeholder={"search favorite event"}
+                    onChange={(evt) => handleInputChange(evt)}
+                    onKeyDown={(evt) => handleInputKeyDown(evt)}
+                    value={search}
+                />
+            </section>
         </>
     )
-}
+})
 
+// Navbar.displayName = "Navbar"

@@ -1,19 +1,16 @@
+import {useEventsData} from "../../hooks/useEventsData.ts";
 import {EventItem} from "./components/EventItem";
-import eventsJSON from "../../data/events.json"
-import {useState} from "react";
 
 interface Props {
     searchTerm: string
 }
 
 export const Events = ({searchTerm}: Props) => {
-    const [data] = useState(eventsJSON)
-    const {_embedded: {events}} = data
+    const {events, isLoading, error} = useEventsData()
 
     const handleEventItemClick = (id: string) => {
         console.log("Event select: " + id)
     }
-
     const eventsItem = (eventsFiltered: typeof events) => {
         return eventsFiltered.map((item, index) => (
             <EventItem
@@ -25,6 +22,13 @@ export const Events = ({searchTerm}: Props) => {
                 id={item.id}
             />
         ))
+    }
+
+    if (error) {
+        return <span>Ups ocurrió un error</span>
+    }
+    if (isLoading) {
+        return <span>El contenido esta cargando</span>
     }
 
     const renderEvents = () => {

@@ -1,55 +1,52 @@
-import {FormEvent, useState} from "react";
+import {SubmitHandler, useForm} from "react-hook-form";
 
+type Inputs = {
+    name: string,
+    age: string,
+    address: string,
+    zipcode: string,
+    phone: string
+}
 export const SignupForm = () => {
-    const [name, setName] = useState("")
-    const [age, setAge] = useState("")
-    const [address, setAddress] = useState("")
-    const [zipcode, setZipcode] = useState("")
-    const [phone, setPhone] = useState("")
-
+    const {register, handleSubmit, reset, formState : {errors}} = useForm<Inputs>()
+    const handleSubmitForm: SubmitHandler<Inputs> = (data) => {
+        console.log(data)
+    }
     const handleClearClick = () => {
-        setName("")
-        setAge("")
-        setAddress("")
-        setZipcode("")
-        setPhone("")
+        reset()
     }
 
-    const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
-        evt.preventDefault()
-        console.log("submit" , {
-            name, age, address, zipcode, phone
-        })
-    }
+    console.log(errors.name)
     return (
         <>
-            <form onSubmit={(evt) => handleSubmitForm(evt)}>
-                <label htmlFor="">
+            <form onSubmit={handleSubmit(handleSubmitForm)}>
+                <label className={"flex flex-col"} htmlFor="">
                     Name
-                    <input required type="text" value={name} onChange={(evt) => setName(evt.target.value)}/>
+                    <input className={"border-2 border-slate-300 w-[300px] rounded-md p-1"} {...register("name", {required: true})} />
+                    {errors.name && <span className={"text-red-600"}>This field is required</span>}
                 </label>
                 <br/>
                 <label htmlFor="">
                     Age
-                    <input required type="text" value={age} onChange={(evt) => setAge(evt.target.value)}/>
+                    <input {...register("age", {required: true})}/>
                 </label>
                 <br/>
 
                 <label htmlFor="">
                     Address
-                    <input required type="text" value={address} onChange={(evt) => setAddress(evt.target.value)}/>
+                    <input {...register("address", {required: true})}/>
                 </label>
                 <br/>
 
                 <label htmlFor="">
                     Zipcode
-                    <input required type="text" value={zipcode} onChange={(evt) => setZipcode(evt.target.value)}/>
+                    <input {...register("zipcode", {required: true})}/>
                 </label>
                 <br/>
 
                 <label htmlFor="">
                     Phone
-                    <input required type="text" value={phone} onChange={(evt) => setPhone(evt.target.value)}/>
+                    <input {...register("phone", {required: true})}/>
                 </label>
                 <br/>
                 <button type={"button"} onClick={handleClearClick}>Clear</button>
