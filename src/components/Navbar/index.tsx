@@ -27,14 +27,14 @@ export const Navbar = forwardRef(({onSearch}: Props, ref: ForwardedRef<HTMLDivEl
     console.log(ref)
     return (
         <>
-            <nav ref={ref} className={"flex flex-col md:flex-row gap-[8px] mb-4 my-[20px] border-2 border-slate-50 py-[24px] px-[12px] bg-slate-500 rounded-xl sticky top-2"}>
+            <nav ref={ref} className={"flex flex-col md:flex-row gap-[8px] mb-4 my-[20px] py-[24px] px-[12px] bg-white rounded-xl sticky top-0 border-[1px] border-slate-200"}>
                 <div className={"flex justify-center md:justify-start items-center w-full md:w-[50%]"}>
-                    <h2 className={"text-[32px] font-[500] text-slate-50"}>My Market</h2>
+                    <h2 className={"text-[32px] font-[500] text-slate-600"}>My Market</h2>
                 </div>
                 <div className={"w-full md:w-[50%]"}>
                     <input
-                        className={"w-full text-slate-50 placeholder-slate-300 border-[1px] border-slate-400 bg-slate-800 " +
-                            "h-[3.25rem] rounded-[4px] px-[1rem] focus:outline-none focus:border-slate-400 focus:bg-slate-700 " +
+                        className={"w-full text-slate-70 placeholder-slate-400 border-[1px] border-slate-300 bg-slate-100 " +
+                            "h-[3.25rem] rounded-[4px] px-[1rem] focus:outline-none focus:border-slate-300 focus:bg-slate-100 " +
                             "focus:ring-1 focus:ring-slate-400"}
                         placeholder={"search"}
                         onChange={(evt) => handleInputChange(evt)}

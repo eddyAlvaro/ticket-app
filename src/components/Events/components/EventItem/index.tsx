@@ -15,7 +15,7 @@ export const EventItem = ({info, id, name, image, onEventClick}: Props) => {
         onEventClick(id)
     }
     return (
-        <div className={"flex flex-col justify-between gap-6 w-full items-center bg-white rounded-2xl p-[12px] shadow-xl border-[1px] border-gray-50"}>
+        <div className={"flex flex-col justify-between gap-6 w-full items-center bg-white rounded-2xl p-[12px] shadow-[5px_8px_16px_-10px_rgba(0,0,0,0.4)] border-[1px] border-gray-100"}>
             <div className={"flex flex-col gap-2"}>
                 <img className={"w-full h-[200px] object-cover rounded-2xl"} src={image} alt={name}/>
                 <h4 className={"text-center font-bold text-slate-500 text-[20px]"}>{name}</h4>

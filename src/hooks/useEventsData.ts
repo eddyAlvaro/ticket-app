@@ -19,7 +19,7 @@ export const useEventsData = () => {
                         setError(String(e));
                     }
                 }
-            }, 4000
+            }, 500
         )
     }, []);
     return {

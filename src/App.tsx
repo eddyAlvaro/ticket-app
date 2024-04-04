@@ -13,7 +13,7 @@ function App() {
     }
     return (
         <>
-            <section className={"m-[0_auto] min-h-screen max-w-[1200px] p-[20px]"}>
+            <section className={"m-[0_auto] min-h-screen max-w-[1250px] p-[20px]"}>
                 <Navbar onSearch={handleNavbarSearch} ref={containerRef}/>
                 <Events searchTerm={searchTerm}/>
                 {/*<SignupForm />*/}
