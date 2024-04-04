@@ -41,10 +41,12 @@ export const Events = ({searchTerm}: Props) => {
     }
     return (
         <>
-            <div className={"w-full"}>
-                Events
-                {renderEvents()}
-            </div>
+            <section className={"flex flex-col gap-4 w-full"}>
+                <h3 className={"text-center text-[24px]"}>Events</h3>
+                <section className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:gap-4"}>
+                    {renderEvents()}
+                </section>
+            </section>
         </>
     )
 }
